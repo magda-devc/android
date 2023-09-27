@@ -47,11 +47,12 @@ fun HomeScreen(navController: NavHostController) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally) {
+        Spacer(modifier = Modifier.height(20.dp))
         Image(painter = painterResource(id = R.drawable.icon),contentDescription = "icon",
             Modifier.size(80.dp))
         Spacer(modifier = Modifier.height(3.dp))
         Text(
-            text = "Stock App",
+            text = "KEEP TRACK",
             color = Color.Black,
             fontFamily = FontFamily.Monospace,
             fontSize = 20.sp)
@@ -69,14 +70,6 @@ fun HomeScreen(navController: NavHostController) {
             modifier = Modifier.width(350.dp),
             colors = ButtonDefaults.buttonColors(Color.DarkGray)) {
             Text(text = "Add products", fontSize = 20.sp,
-                color = Color(0xFFFFA200),
-                modifier = Modifier.padding(5.dp))
-        }
-        Spacer(modifier = Modifier.height(10.dp))
-        Button(onClick = { navController.navigate(ROUTE_NEW_STOCK) },
-            modifier = Modifier.width(350.dp),
-            colors = ButtonDefaults.buttonColors(Color.DarkGray)) {
-            Text(text = "New Stock", fontSize = 20.sp,
                 color = Color(0xFFFFA200),
                 modifier = Modifier.padding(5.dp))
         }

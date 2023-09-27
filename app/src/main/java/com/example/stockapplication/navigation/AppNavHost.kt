@@ -10,7 +10,6 @@ import com.example.midmorningnavigationapp.ui.theme.pages.products.AddProductsSc
 import com.example.stockapplication.ui.theme.pages.about.AboutScreen
 import com.example.stockapplication.ui.theme.pages.home.HomeScreen
 import com.example.stockapplication.ui.theme.pages.login.LoginScreen
-import com.example.stockapplication.ui.theme.pages.products.NewStockScreen
 import com.example.stockapplication.ui.theme.pages.products.UpdateProductsScreen
 import com.example.stockapplication.ui.theme.pages.products.ViewProductsScreen
 import com.example.stockapplication.ui.theme.pages.signup.SignupScreen
@@ -33,9 +32,6 @@ fun AppNavHost(modifier: Modifier = Modifier,
         }
         composable(ROUTE_ADD_PRODUCTS){
             AddProductsScreen(navController)
-        }
-        composable(ROUTE_NEW_STOCK){
-            NewStockScreen(navController)
         }
         composable(ROUTE_UPDATE_PRODUCTS +"/id"){ passedData->
             UpdateProductsScreen(navController,passedData.arguments?.getString("id")!!)

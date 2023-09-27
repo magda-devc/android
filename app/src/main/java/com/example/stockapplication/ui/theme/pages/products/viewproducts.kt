@@ -29,13 +29,14 @@ import com.example.stockapplication.data.ProductRepository
 import com.example.stockapplication.models.Product
 import com.example.stockapplication.navigation.ROUTE_UPDATE_PRODUCTS
 import com.example.stockapplication.ui.theme.StockApplicationTheme
+import com.google.firebase.auth.FirebaseAuth
 
 
 @Composable
 fun ViewProductsScreen(navController:NavHostController) {
     Column(modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally) {
-
+        
         var context = LocalContext.current
         var productRepository = ProductRepository(navController, context)
 
