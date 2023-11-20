@@ -7,7 +7,9 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.navigation.NavHostController
 import com.example.stockapplication.models.Product
+import com.example.stockapplication.navigation.ROUTE_HOME
 import com.example.stockapplication.navigation.ROUTE_LOGIN
+import com.example.stockapplication.navigation.ROUTE_VIEW_PRODUCTS
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -19,9 +21,7 @@ class ProductRepository(var navController: NavHostController, var context: Conte
 
     init {
         authRepository = AuthRepository(navController, context)
-        if (!authRepository.isLoggedIn()) {
-            navController.navigate(ROUTE_LOGIN)
-        }
+
         progress = ProgressDialog(context)
         progress.setTitle("Loading")
         progress.setMessage("Please wait...")
@@ -45,19 +45,18 @@ class ProductRepository(var navController: NavHostController, var context: Conte
         }
     }
 
-    fun viewProducts(
-        emptyProductState: MutableState<Product>,
-        emptyProductsListState: SnapshotStateList<Product>
-    ): ArrayList<Product> {
+    fun viewProducts(product:MutableState<Product>, products:SnapshotStateList<Product>): SnapshotStateList<Product> {
         var ref = FirebaseDatabase.getInstance().getReference().child("Products")
+
         progress.show()
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 progress.dismiss()
                 products.clear()
-                for (snap in snapshot.children) {
-                    var product = snap.getValue(Product::class.java)
-                    products.add(product!!)
+                for (snap in snapshot.children){
+                    val value = snap.getValue(Product::class.java)
+                    product.value = value!!
+                    products.add(value)
                 }
             }
 
