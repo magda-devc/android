@@ -1,5 +1,7 @@
 package com.example.stockapplication.ui.theme.pages.products
 
+import android.widget.TableLayout
+import android.widget.TableRow
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -27,6 +30,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.stockapplication.data.ProductRepository
 import com.example.stockapplication.models.Product
+import com.example.stockapplication.navigation.ROUTE_ADD_PRODUCTS
 import com.example.stockapplication.navigation.ROUTE_UPDATE_PRODUCTS
 import com.example.stockapplication.ui.theme.StockApplicationTheme
 import com.google.firebase.auth.FirebaseAuth
@@ -59,7 +63,7 @@ fun ViewProductsScreen(navController:NavHostController) {
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            LazyColumn {
+            LazyColumn() {
                 items(products){
                     ProductItem(
                         name = it.name,
@@ -92,7 +96,7 @@ fun ProductItem(name:String, itemtype:String, quantity:String ,price:String, id:
             Text(text = "Delete")
         }
         Button(onClick = {
-            navController.navigate("$ROUTE_UPDATE_PRODUCTS/$id")
+            navController.navigate(ROUTE_ADD_PRODUCTS)
         }) {
             Text(text = "Update")
         }
